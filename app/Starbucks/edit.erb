@@ -1,0 +1,97 @@
+<div data-role="page">
+
+<div data-role="header">
+  <h1>Edit <%= @starbucks.title %></h1>
+  	<a data-icon="back"  href="<%= url_for :action => :show, :id => @starbucks.object %>">Cancel</a>
+    <a data-icon="delete" href="<%= url_for :action => :delete, :id => @starbucks.object %>">Delete</a>
+</div>
+
+<div data-role="content">
+  <form method="POST" action="<%= url_for :action => :update %>">
+      <input type="hidden" name="id" value="<%= @starbucks.object %>"/>
+
+      <h2>Name</h2>
+      <ul>
+          <li>
+              <label for="starbucks[fname]" class="fieldLabel">FirstName</label>
+              <input type="text" name="starbucks[fname]" value="<%= @starbucks.fname%>" <%= placeholder( "FirstName" ) %> />
+          </li>
+          <li>
+              <label for="starbucks[lname]" class="fieldLabel">LastName</label>
+              <input type="text" name="starbucks[lname]" value="<%= @starbucks.lname%>" <%= placeholder( "LastName" ) %> />
+          </li>
+      </ul>
+
+      <h2>Coffee Preference</h2>
+      <ul>
+          <li>
+              <select name="starbucks[size]">
+                  <option value="short" <%= selected("short",@starbucks.size) %>>Short</option>
+                  <option value="tall" <%= selected("tall",@starbucks.size) %>>Tall</option>
+                  <option value="grande" <%= selected("grande",@starbucks.size) %>>Grande</option>
+                  <option value="venti" <%= selected("venti",@starbucks.size) %>>Venti</option>
+              </select>
+          </li>
+      </ul>
+
+      <ul>
+          <li>
+              <select name="starbucks[milk]">
+                  <option value="whole" <%= selected("whole",@starbucks.milk) %>>Whole</option>
+                  <option value="2%" <%= selected("2%",@starbucks.milk) %>>2%</option>
+                  <option value="skim" <%= selected("skim",@starbucks.milk) %>>Skim</option>
+                  <option value="soy" <%= selected("soy",@starbucks.milk) %>>Soy</option>
+              </select>
+          </li>
+      </ul>
+      
+      <ul>
+          <li>
+              <select name="starbucks[sweetener]">
+                  <option value="sugar" <%= selected("sugar",@starbucks.sweetener) %>>Sugar</option>
+                  <option value="splenda" <%= selected("splenda",@starbucks.sweetener) %>>Splenda</option>
+                  <option value="equal" <%= selected("equal",@starbucks.sweetener) %>>Equal</option>
+              </select>
+          </li>
+      </ul>
+      
+      <ul>
+          <li>
+              <select name="starbucks[shots]">
+                  <option value="standard" <%= selected("standard",@starbucks.shots) %>>Standard</option>
+                  <option value="single" <%= selected("single",@starbucks.shots) %>>Single</option>
+                  <option value="double" <%= selected("double",@starbucks.shots) %>>Double</option>
+                  <option value="triple" <%= selected("triple",@starbucks.shots) %>>Triple</option>
+              </select>
+          </li>
+      </ul>    
+      <ul>
+          <li>
+              <select name="starbucks[caffeine]">
+                  <option value="caf" <%= selected("caf",@starbucks.caffeine) %>>Caf</option>
+                  <option value="halfcaf" <%= selected("halfcaf",@starbucks.caffeine) %>>Half Caf</option>
+                  <option value="decaf" <%= selected("decaf",@starbucks.caffeine) %>>Decaf</option>
+              </select>
+          </li>
+      </ul>
+      
+      <ul>
+          <li>
+              <select name="starbucks[whip]">
+                  <option value="whip" <%= selected("whip",@starbucks.whip) %>>Whip</option>
+                  <option value="lightwhip" <%= selected("lightwhip",@starbucks.whip) %>>Light Whip</option>
+                  <option value="nowhip" <%= selected("nowhip",@starbucks.whip) %>>No Whip</option>
+              </select>
+          </li>
+      </ul>
+      
+      <h2>Notes</h2>
+      <ul>
+          <li class="textarea">
+              <textarea name="starbucks[notes]" rows="5" cols="30" ><%= @starbucks.notes%></textarea>
+          </li>
+      </ul>
+      <button type="submit" data-theme="a" name="submit" value="submit-value" class="ui-btn-hidden">Update</button>
+  </form>
+</div>
+</div>

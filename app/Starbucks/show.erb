@@ -1,0 +1,60 @@
+<div data-role="page"  data-cache="never">
+
+<div data-role="header">
+ 	<h1>Coffee Order for <%= @starbucks.fname%></h1>
+	<a data-icon="back"  href="<%= url_for :action => :index %>">Back</a>
+
+  <a data-icon="check" class="ui-btn-right" href="<%= url_for :action => :edit, :id => @starbucks.object %>">Edit</a>
+</div>
+
+<div data-role="content">
+	<ul data-role="listview" >
+  		<li>
+          <div class="ui-block-a">FirstName</div>
+          <div class="ui-block-b"><%= @starbucks.fname%></div>
+      </li>
+
+    
+      <li>
+          <div class="ui-block-a">LastName</div>
+          <div class="ui-block-b"><%= @starbucks.lname%></div>
+      </li>
+    
+
+      <li>
+          <div class="ui-block-a">Size</div>
+          <div class="ui-block-b"><%= @starbucks.size%></div>
+      </li>
+
+     <li>
+          <div class="ui-block-a">Milk</div>
+          <div class="ui-block-b"><%= @starbucks.milk%></div>
+      </li>
+
+     <li>
+          <div class="ui-block-a">Sweetener</div>
+          <div class="ui-block-b"><%= @starbucks.sweetener%></div>
+      </li>
+
+      <li>
+          <div class="ui-block-a">Shots</div>
+          <div class="ui-block-b"><%= @starbucks.shots%></div>
+      </li>
+
+      <li>
+          <div class="ui-block-a">Caffeine</div>
+          <div class="ui-block-b"><%= @starbucks.caffeine%></div>
+      </li>
+
+      <li>
+          <div class="ui-block-a">Whip</div>
+          <div class="ui-block-b"><%= @starbucks.whip%></div>
+      </li>
+
+      <li>
+          <div class="ui-block-a">Notes</div>
+          <div class="ui-block-b"><%= @starbucks.notes%></div>
+      </li>
+	</ul>
+</div>
+</div>

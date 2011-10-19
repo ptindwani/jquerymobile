@@ -1,0 +1,103 @@
+<div data-role="page">
+
+<div data-role="header">
+  <h1>New <%= @starbucks.title %></h1>
+
+    <a class="cancel" href="<%= url_for :action => :index %>">Cancel</a>
+</div>
+
+<div data-role="content">
+  <form method="POST" action="<%= url_for :action => :create %>">
+      <input type="hidden" name="id" value="<%= @starbucks.object %>"/>
+
+      <h2>Name</h2>
+      <ul data-role="listview">
+          <li>
+              <label for="starbucks[fname]" class="fieldLabel">FirstName</label>
+              <input type="text" name="starbucks[fname]" <%= placeholder( "FirstName" ) %> />
+          </li>
+          <li>
+              <label for="starbucks[lname]" class="fieldLabel">LastName</label>
+              <input type="text" name="starbucks[lname]" <%= placeholder( "LastName" ) %> />
+          </li>
+      </ul>
+
+      <h2>Coffee Preference</h2>
+      <ul>
+          <li>
+              <select name="starbucks[size]">
+                  <option selected>Size</option>
+                  <option value="short">Short</option>
+                  <option value="tall">Tall</option>
+                  <option value="grande">Grande</option>
+                  <option value="venti">Venti</option>
+              </select>
+          </li>
+      </ul>
+
+      <ul>
+          <li>
+              <select name="starbucks[milk]">
+                  <option selected>Milk</option>
+                  <option value="whole">Whole</option>
+                  <option value="2%">2%</option>
+                  <option value="skim">Skim</option>
+                  <option value="soy">Soy</option>
+              </select>
+          </li>
+      </ul>
+      
+      <ul>
+          <li>
+              <select name="starbucks[sweetener]">
+                  <option selected>Sweetener</option>
+                  <option value="sugar">Sugar</option>
+                  <option value="splenda">Splenda</option>
+                  <option value="equal">Equal</option>
+              </select>
+          </li>
+      </ul>
+      
+      <ul>
+          <li>
+              <select name="starbucks[shots]">
+                  <option selected>Shots</option>
+                  <option value="standard">Standard</option>
+                  <option value="single">Single</option>
+                  <option value="double">Double</option>
+                  <option value="triple">Triple</option>
+              </select>
+          </li>
+      </ul>    
+      <ul>
+          <li>
+                <select name="starbucks[caffeine]">
+                      <option selected>Caffeine</option>
+                      <option value="caf">Caf</option>
+                      <option value="halfcaf">Half Caf</option>
+                      <option value="decaf">Decaf</option>
+                  </select>
+              </li>
+          </ul>
+          
+          <ul>
+              <li>
+                  <select name="starbucks[whip]">
+                      <option selected>Whip</option>
+                      <option value="whip">Whip</option>
+                      <option value="lightwhip">Light Whip</option>
+                      <option value="nowhip">No Whip</option>
+                  </select>
+              </li>
+          </ul>
+          
+      <h2>Notes</h2>
+      <ul>
+          <li class="textarea">
+              <textarea name="starbucks[notes]" rows="5" cols="30" ></textarea>
+          </li>
+      </ul>
+      <button type="submit" data-theme="a" name="submit" value="submit-value" class="ui-btn-hidden">Submit</button>
+  </form>
+</div>
+</div>

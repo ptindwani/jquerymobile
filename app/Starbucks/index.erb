@@ -1,0 +1,25 @@
+<div data-role="page">
+
+<div data-role="header">
+  <h1>TOTHEE COFFEE ORDER</h1>
+  <a data-icon="back"  href="<%= Rho::RhoConfig.start_path %>">Home</a>
+  <a data-icon="check" href="<%= url_for :controller => :Starbucks, :action => :choosedrink %>">New</a>
+  
+</div>
+
+<div data-role="content">
+  <ul data-role="listview">
+    <% @starbuckses.each do |starbucks| %>
+        
+        <li>
+            <a href="<%= url_for :action => :show, :id => starbucks.object %>">
+                <span class="title"><%= starbucks.fname %> <%= starbucks.lname %></span>
+            </a>
+        </li>
+        
+    <% end %>
+  </ul>
+</div>
+
+	
+</div>
