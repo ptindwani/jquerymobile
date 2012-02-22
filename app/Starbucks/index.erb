@@ -1,4 +1,4 @@
-<div data-role="page">
+<div data-role="page" id="homepage">
 
 <div data-role="header">
   <h1>TOTHEE COFFEE ORDER</h1>
@@ -8,10 +8,10 @@
 </div>
 
 <div data-role="content">
-  <ul data-role="listview">
+  <ul data-role="listview" style="margin-top: 0;">
     <% @starbuckses.each do |starbucks| %>
         
-        <li>
+        <li data-role="list-divider">
             <a href="<%= url_for :action => :show, :id => starbucks.object %>">
                 <span class="title"><%= starbucks.fname %> <%= starbucks.lname %></span>
             </a>
@@ -19,6 +19,8 @@
         
     <% end %>
   </ul>
+  <!-- <ol id="AN-sObj-parentOl"><li id="AN-sObj-scene-0"><div class="AN-sObj-stage" id="ext-gen17827"><div id="AN-sObj-3"><div id="AN-sObj-2"></div></div><div id="AN-sObj-10"></div></div></li>
+  </ol> -->
 </div>
 
 	

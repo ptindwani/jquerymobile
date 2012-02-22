@@ -3,15 +3,505 @@
 	<head> 
 	<title>Store</title> 
 	<link rel="stylesheet" href="/public/jquery.mobile-1.0a3.min.css" />
+	<script type="text/javascript" src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
 	<script type="text/javascript" src="/public/jquery-1.5.min.js"></script>
 	<script type="text/javascript">
 	$(document).bind("mobileinit", function(){
-	  $.extend(  $.mobile , {
-	    loadingMessage: false
+	  $.extend( $.mobile , {
+	    metaViewportContent: "width=device-width, height=device-height, minimum-scale=1, maximum-scale=1";
+	    loadingMessage: false;
+	    touchOverflowEnabled = true;
 	  });
+	  
+    // $('#homepage').live('pageshow',function(event){
+    //   alert("this page just loaded");
+    // });
+    //  
+    // $('#homepage').live('pageshow',function(event){
+    //      if (typeof(AN) === 'undefined') {
+    //          AN = {}; 
+    //       }
+    //       AN.Controller = {
+    // 
+    //           scenes: {},
+    //           scenesArray: [],
+    //           currentSceneID: -1,
+    //           olElement: null,
+    //           clickEvents: {},
+    //           useOrmma: false,
+    // 
+    //           setConfig: function(configData) {
+    // 
+    //               this.clickEvents = configData.clickEvents
+    // 
+    //               this.olElement = document.getElementById(configData.parentId);
+    //               var liElements = this.olElement.children;
+    // 
+    //               if (configData.ormma) {
+    //                   this.useOrmma = true;
+    //               }
+    // 
+    //               var scene;
+    //               for (var i=0; i < configData.scenes.length; i++) {
+    //                   scene = configData.scenes[i];
+    //                   scene.element = liElements[i];
+    //                   this.scenes[scene.id] = scene;
+    //                   this.scenesArray.push(scene);
+    //               }
+    // 
+    //               this.setupListeners();
+    // 
+    //               this.startSceneByID(this.scenesArray[0].id);
+    // 
+    // 
+    // 
+    //           },
+    // 
+    // 
+    //           runningAnimationCount: 0,
+    //           browser: 'webkit',
+    // 
+    //           setupListeners: function() {
+    //               var me = this;
+    // 
+    //               var eventName = "webkitAnimationEnd";
+    // 
+    //               if (document.body.style.MozAnimationName !== undefined) {
+    //                   eventName = "animationend";
+    //                   this.browser = "moz";
+    //               }
+    // 
+    //               this.olElement.addEventListener(eventName, function() {
+    //                   me.onAnimationEnd();
+    //               },false);
+    // 
+    //               function addMousemoveListenerTo(scene) {
+    //                   scene.element.addEventListener('mousemove', function(event){
+    //                       scene.mousemoveAction(me, event);
+    //                   }, false);
+    //               }
+    // 
+    //               var scene;
+    //               for (var i=0; i < this.scenesArray.length; i++) {
+    //                   scene = this.scenesArray[i];
+    //                   if (scene.mousemoveAction) {
+    // 
+    //                       addMousemoveListenerTo(scene);
+    //                   }
+    //               }
+    // 
+    //               function addListenerTo(element, event, aFunction) {
+    //                   element.addEventListener(event, function(event){
+    //                       aFunction(me,event);
+    //                   }, false);
+    //               }
+    // 
+    //               //add click events
+    //               var element, clickEvent;
+    //               for (var i=0; i < this.clickEvents.length; i++) {
+    //                   clickEvent = this.clickEvents[i];
+    //                   element = document.getElementById(clickEvent.id);
+    //                   addListenerTo(element, 'click', clickEvent.handler);
+    //               }
+    // 
+    //           },
+    // 
+    // 
+    //           onAnimationEnd: function() {
+    // 
+    //               this.runningAnimationCount--;
+    // 
+    //               if (this.runningAnimationCount === 0) {
+    //                   this.onSceneFinish();
+    //               }
+    // 
+    //           },
+    // 
+    //           startSceneByID: function(sceneID) {
+    // 
+    //               var me = this;
+    // 
+    //               //restart current scene without flicker
+    //               if (sceneID === this.currentSceneID) {
+    //                   this.scenes[sceneID].element.setAttribute('class','run restart');
+    // 
+    //                   setTimeout(function(){
+    // 
+    //                       me.runningAnimationCount = me.scenes[sceneID].animationCount;
+    //                       me.scenes[sceneID].element.setAttribute('class','run');
+    // 
+    //                       if (me.scenes[sceneID].startAction) {
+    //                           me.scenes[sceneID].startAction(me);
+    //                       }
+    //                       if (me.scenes[sceneID].animationCount === 0 ) {
+    //                           me.onSceneFinish();
+    //                       }
+    // 
+    //                       },0);
+    //                   return;
+    //               } else if (this.currentSceneID !== -1) {
+    //                   this.scenes[this.currentSceneID].element.setAttribute('class','');
+    //               }
+    // 
+    //               this.runningAnimationCount = this.scenes[sceneID].animationCount;
+    // 
+    //               this.currentSceneID = sceneID;
+    //               var nextScene = this.scenes[sceneID];
+    // 
+    //               if (this.browser === 'moz') {
+    //                   nextScene.element.setAttribute('class','run restart');
+    //                   var unused = nextScene.element.offsetHeight;
+    //                   nextScene.element.setAttribute('class','run');    
+    //               } else {
+    //                   nextScene.element.setAttribute('class','run');
+    //               }
+    // 
+    //               if (this.useOrmma) {
+    // 
+    //                  this.ormmaNextScene(nextScene);
+    //               }
+    // 
+    // 
+    //               if (nextScene.startAction) {
+    //                   nextScene.startAction(this);
+    //               }
+    //               if (nextScene.animationCount === 0 ) {
+    //                   this.onSceneFinish();
+    //               }
+    // 
+    // 
+    //           },
+    // 
+    //           replayScene: function() {
+    //               this.startSceneByID(this.currentSceneID);
+    //           },
+    // 
+    //           onSceneFinish: function() {
+    // 
+    //               if (this.scenes[this.currentSceneID].endAction) {
+    //                   this.scenes[this.currentSceneID].endAction(this);
+    //               }
+    // 
+    //           },
+    // 
+    //           goToNextScene: function() {
+    //               var nextIndex = this.scenesArray.indexOf(this.scenes[this.currentSceneID]) + 1;
+    //               var nextScene;
+    //               if (nextScene = this.scenesArray[nextIndex]) {
+    //                   this.startSceneByID(nextScene.id);
+    //               }
+    //           },
+    // 
+    //           goToURL: function(aURL) {
+    //               document.location.href = aURL;
+    //           },
+    // 
+    //           ormmaNextScene: function(nextScene) {
+    //               var currentState = ormma.getState();
+    // 
+    //               if (nextScene.dimensions.expanded) {
+    //                   //expanded state
+    //                   //check if we're expanded
+    //                   var maxSize = ormma.getMaxSize()
+    //                   if (currentState !== 'expanded') {
+    //                       ormma.expand({
+    //                           x:0,
+    //                           y:0,
+    //                           width: maxSize.width,
+    //                           height: maxSize.height
+    //                       })
+    //                   }
+    // 
+    //                   var transform = "";
+    //                   var elementHeight = nextScene.element.offsetHeight;
+    //                   var elementWidth = nextScene.element.offsetWidth;
+    //                   var y = (maxSize.height - elementHeight) / 2;
+    //                   var x = (maxSize.width - elementWidth) / 2;
+    //                   transform += " translate3d("+Math.round(x)+"px,"+Math.round(y)+"px,0)";   
+    // 
+    // 
+    //                   if (nextScene.dimensions.fit) {
+    //                       var scaleFactor = Math.min(maxSize.width/elementWidth, maxSize.height/elementHeight);                    
+    //                       transform += " scale3d("+scaleFactor+","+scaleFactor+",1)";
+    //                   }
+    //                   nextScene.element.style.webkitTransform = transform;
+    // 
+    //               } else {
+    // 
+    //                   if (currentState === 'expanded') {
+    //                       ormma.close();
+    //                   }
+    //                   ormma.resize(nextScene.dimensions.width,nextScene.dimensions.height);
+    //               }
+    // 
+    // 
+    //           }
+    // 
+    //       }
+    // 
+    //       window.addEventListener('load', function(){
+    //           var configData = {
+    //               parentId: 'AN-sObj-parentOl',
+    //               ormma: false,
+    //               scenes: [{id: 0,animationCount: 2,duration: 4032.178217821782,dimensions: {height: 320,width: 480,expanded: false,fit: false}}],
+    //               clickEvents: []
+    //           };
+    //           AN.Controller.setConfig(configData);
+    //       }, false);
+    //     });
 	});
-	</script>	<script type="text/javascript" src="/public/jquery.mobile-1.0a3.min.js"></script>
+	</script>	
+	<script type="text/javascript" src="/public/jquery.mobile-1.0a3.min.js"></script>
+  <!-- <style type="text/css">
 
+  .AN-sObj-stage {
+      position: relative;
+      overflow: hidden;
+  }
+
+  .AN-sObj-stage div {
+      position: absolute;
+  }
+
+  .AN-sObj-stage a {
+      color: inherit;
+      text-decoration: none;
+  }
+
+  .AN-sObj-stage * {
+      margin: 0;
+      padding: 0;
+      -moz-font-smoothing: antialiased;
+      -webkit-font-smoothing: antialiased;
+  }
+
+  .AN-sObj-stage img {
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
+
+  body,.AN-sObj-stage,ol,li {
+      margin: 0;
+      padding: 0;
+  }
+
+  ol {
+      list-style: none;
+      position: relative;
+  }
+
+  li {
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
+
+  .AN-Scene-Description {
+      display: none;
+  }
+
+  @-webkit-keyframes AN-ani-delay {
+      0% {
+      }
+
+      100% {
+      }
+  }
+
+  @-moz-keyframes AN-ani-delay {
+      0% {
+      }
+
+      100% {
+      }
+  }
+
+  li {
+      display: none;
+  }
+
+  li.run {
+      display: block;
+  }
+
+  .restart * {
+      -moz-animation-name: none !important;
+      -webkit-animation-name: none !important;
+  }
+
+  #AN-sObj-3 {
+      -moz-transform: translate(167px, -45px);
+      -webkit-transform: translate3d(167px, -45px, 0px);
+      width: 144px;
+      height: 200px;
+      border-top: 0px solid rgba(1,14,13,1);
+      border-right: 0px solid rgba(1,14,13,1);
+      border-bottom: 0px solid rgba(1,14,13,1);
+      border-left: 0px solid rgba(1,14,13,1);
+      background-color: rgba(194,194,194,0);
+      top: 0;
+      left: 0;
+  }
+
+  #AN-sObj-2 {
+      -moz-transform: translate(-18px, 255px) scale(1, 1);
+      -webkit-transform: translate3d(-18px, 255px, 0px) scale3d(1, 1, 1);
+      width: 172px;
+      height: 12px;
+      border-top: 0px solid rgba(1,14,13,1);
+      border-right: 0px solid rgba(1,14,13,1);
+      border-bottom: 0px solid rgba(1,14,13,1);
+      border-left: 0px solid rgba(1,14,13,1);
+      background-color: rgba(170,83,3,1);
+      top: 0;
+      left: 0;
+      background-image: -webkit-gradient(
+  radial
+  , 
+  123.91304347826086% 56.52173913043478%,
+  5,
+  54.347826086956516% 58.69565217391305%,
+  100,
+  color-stop(0, rgba(170,83,3,1)),
+  color-stop(1, rgba(139,90,43,1))
+  );
+      background-repeat: no-repeat;
+      -moz-transform-origin: 100% 100%;
+      -webkit-transform-origin: 100% 100%;
+      overflow: hidden;
+  }
+
+  #AN-sObj-10 {
+      -moz-transform: translate(100px, 67px);
+      -webkit-transform: translate3d(100px, 67px, 0px);
+      width: 280px;
+      height: 252px;
+      border-top: 0px solid rgba(1,14,13,1);
+      border-right: 0px solid rgba(1,14,13,1);
+      border-bottom: 0px solid rgba(1,14,13,1);
+      border-left: 0px solid rgba(1,14,13,1);
+      background-color: rgba(194,194,194,0.004807692307692291);
+      top: 0;
+      left: 0;
+      background-image: url('/public/images/bodum_coffee_cup.png');
+      background-repeat: no-repeat;
+  }
+
+  #AN-sObj-scene-0 .AN-sObj-stage {
+      height: 320px;
+      width: 480px;
+      background-color: rgba(255,255,255,1);
+  }
+
+  @-webkit-keyframes AN-ani-6 {
+      0% {
+          -webkit-transform: translate3d(-18px, 255px, 0px) scale3d(1, 1, 1);
+          -webkit-animation-timing-function: ease;
+      }
+
+      0.25% {
+          -webkit-transform: translate3d(-18px, 255px, 0px) scale3d(1, 1, 1);
+          -webkit-animation-timing-function: ease-in;
+      }
+
+      100% {
+          -webkit-transform: translate3d(-17px, 255px, 0px) scale3d(1, 12, 1);
+          -webkit-animation-timing-function: ease;
+      }
+  }
+
+  @-moz-keyframes AN-ani-6 {
+      0% {
+          -moz-transform: translate(-18px, 255px) scale(1, 1);
+          -moz-animation-timing-function: ease;
+      }
+
+      0.25% {
+          -moz-transform: translate(-18px, 255px) scale(1, 1);
+          -moz-animation-timing-function: ease-in;
+      }
+
+      100% {
+          -moz-transform: translate(-17px, 255px) scale(1, 12);
+          -moz-animation-timing-function: ease;
+      }
+  }
+
+  .run #AN-sObj-2 {
+      -moz-animation-name: AN-ani-6;
+      -webkit-animation-name: AN-ani-6;
+      -moz-animation-duration: 4.0272277227722775s;
+      -webkit-animation-duration: 4.0272277227722775s;
+      -moz-animation-delay: 0s;
+      -webkit-animation-delay: 0s;
+      -moz-animation-fill-mode: both;
+      -webkit-animation-fill-mode: both;
+  }
+
+  #AN-sObj-2 {
+      -moz-transform: translate(-17px, 255px) scale(1, 12);
+      -webkit-transform: translate3d(-17px, 255px, 0px) scale3d(1, 12, 1);
+      -moz-animation-timing-function: ease;
+      -webkit-animation-timing-function: ease;
+  }
+
+  .restart #AN-sObj-2 {
+      -moz-transform: translate(-18px, 255px) scale(1, 1);
+      -webkit-transform: translate3d(-18px, 255px, 0px) scale3d(1, 1, 1);
+      -moz-animation-timing-function: ease;
+      -webkit-animation-timing-function: ease;
+  }
+
+  @-webkit-keyframes AN-ani-7 {
+      0% {
+          -webkit-transform: translate3d(167px, -45px, 0px);
+      }
+
+      0.25% {
+          -webkit-transform: translate3d(167px, -45px, 0px);
+      }
+
+      100% {
+          -webkit-transform: translate3d(167px, -45px, 0px);
+      }
+  }
+
+  @-moz-keyframes AN-ani-7 {
+      0% {
+          -moz-transform: translate(167px, -45px);
+      }
+
+      0.25% {
+          -moz-transform: translate(167px, -45px);
+      }
+
+      100% {
+          -moz-transform: translate(167px, -45px);
+      }
+  }
+
+  .run #AN-sObj-3 {
+      -moz-animation-name: AN-ani-7;
+      -webkit-animation-name: AN-ani-7;
+      -moz-animation-duration: 4.032178217821782s;
+      -webkit-animation-duration: 4.032178217821782s;
+      -moz-animation-delay: 0s;
+      -webkit-animation-delay: 0s;
+      -moz-animation-fill-mode: both;
+      -webkit-animation-fill-mode: both;
+  }
+
+  #AN-sObj-3 {
+      -moz-transform: translate(167px, -45px);
+      -webkit-transform: translate3d(167px, -45px, 0px);
+  }
+
+  .restart #AN-sObj-3 {
+      -moz-transform: translate(167px, -45px);
+      -webkit-transform: translate3d(167px, -45px, 0px);
+  }
+  </style> -->
 </head> 
 <body>
     <%= @content %>
