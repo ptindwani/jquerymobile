@@ -10,6 +10,11 @@ class StarbucksController < Rho::RhoController
     render
   end
 
+  def client
+    @attendees = Attendee.find(:all)
+    render :action => :client
+  end
+  
   # GET /Starbucks/{1}
   def show
     @starbucks = Starbucks.find(@params['id'])

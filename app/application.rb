@@ -2,36 +2,16 @@ require 'rho/rhoapplication'
 
 class AppApplication < Rho::RhoApplication
   
-    def initialize
-      super
-      @default_menu = { "Home" => :home, 
-                        "Refresh" => :refresh, 
-                        "Sync" => :sync, 
-                        "Options" => :options, 
-                        "Log" => :log, 
-                        :separator => nil, 
-                        "Close" => :close } 
-      $mt_string = ""
-      #Rho::RHO.get_instance().load_all_sync_sources()
+  def initialize
+    # Tab items are loaded left->right, @tabs[0] is leftmost tab in the tab-bar
+    # Super must be called *after* settings @tabs!
+    @tabs = nil
+    #To remove default toolbar uncomment next line:
+    #@@toolbar = nil
+    super
 
-      SyncEngine.set_notification(-1, "/app/Settings/sync_notify", '')    
-    end
-
-    def on_activate_app
-      $mt_string += "Activation callback called<br/>"
-      #start geolocation
-      #GeoLocation.known_position?
-      #GeoLocation.set_notification("/app/Settings/geo_callback", "")
-
-      System.set_push_notification("/app/Settings/push_callback", "")
-    end
-
-    def on_deactivate_app
-      $mt_string += "Deactivation callback called<br/>"
-    end
-
+    # Uncomment to set sync notification callback to /app/Settings/sync_notify.
+    # SyncEngine::set_objectnotify_url("/app/Settings/sync_notify")
+    # SyncEngine.set_notification(-1, "/app/Settings/sync_notify", '')
   end
-
-  at_exit do
-  	puts "at_exit"
-  end
+end

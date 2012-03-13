@@ -1,9 +1,9 @@
 <div data-role="page">
 
 <div data-role="header">
-  <h1>New</h1>
+  <h1>New<%= @starbucks.title %></h1>
 
-    <a class="cancel" href="<%= url_for :action => :index %>">Cancel</a>
+    <a class="cancel" href="<%= url_for :action => :index %>" data-direction="reverse">Cancel</a>
 </div>
 
 <div data-role="content">

@@ -7,14 +7,15 @@ class AttendeeController < Rho::RhoController
   # GET /Attendee
   def index
     @attendees = Attendee.find(:all)
-    render :back => '/app'
+    render # :back => '/app'
   end
 
   # GET /Attendee/{1}
   def show
     @attendee = Attendee.find(@params['id'])
+    puts "@attendee : #{@attendee}"
     if @attendee
-      render :action => :show, :back => url_for(:action => :index)
+      render :action => :show # , :back => url_for(:action => :index)
     else
       redirect :action => :index
     end
@@ -23,14 +24,14 @@ class AttendeeController < Rho::RhoController
   # GET /Attendee/new
   def new
     @attendee = Attendee.new
-    render :action => :new, :back => url_for(:action => :index)
+    render :action => :new
   end
 
   # GET /Attendee/{1}/edit
   def edit
     @attendee = Attendee.find(@params['id'])
     if @attendee
-      render :action => :edit, :back => url_for(:action => :index)
+      render :action => :edit # , :back => url_for(:action => :index)
     else
       redirect :action => :index
     end
@@ -38,7 +39,8 @@ class AttendeeController < Rho::RhoController
 
   # POST /Attendee/create
   def create
-    @attendee = Attendee.create(@params['attendee'])
+    @attendee = Attendee.new(@params['attendee'])
+    @attendee.save
     redirect :action => :index
   end
 

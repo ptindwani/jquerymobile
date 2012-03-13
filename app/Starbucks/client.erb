@@ -1,0 +1,25 @@
+<div data-role="page" id="homepage">
+
+<div data-role="header">
+  <h1>TOTHEE COFFEE ORDER</h1>
+  <a data-icon="back"  href="<%= Rho::RhoConfig.start_path %>">Home</a>
+</div>
+
+<div data-role="content">
+  <ul data-role="listview" style="margin-top: 0;">
+    <h1>Please select the client</h1>
+     <form method="POST" action="<%= url_for :action => :index %>">
+         <select name="attendee[name]">
+             <% @attendees.each do |attendee| %>
+             <option name="category" value="<%= attendee.name %>"><%= attendee.name %></option>
+             <% end %>
+         </select>
+       <input type="submit" class="standardButton" value="Create" />
+     </form>
+     <p>Make sure you have created client in Attendee model first.</p>
+  </ul>
+
+</div>
+
+	
+</div>
